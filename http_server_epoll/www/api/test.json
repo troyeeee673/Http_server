@@ -1,0 +1,12 @@
+{
+    "status": "ok",
+    "message": "JSON 文件测试成功",
+    "server": "TinyHTTPServer/1.0",
+    "timestamp": "2026-07-11",
+    "features": [
+        "多线程",
+        "静态文件",
+        "目录浏览",
+        "日志系统"
+    ]
+}
