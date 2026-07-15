@@ -17,7 +17,7 @@ static volatile sig_atomic_t keep_running = 1;
 
 void handle_signal(int sig) {
     (void)sig;
-    keep_running = 0;//服务结束，关闭主循环
+    keep_running = 0;
 }
 
 //初始化服务端，完成socket,bind,listen
@@ -60,6 +60,7 @@ int init_server_socket(int port)
 }
 
 void start_server(int port) {
+    int fd;
     int server_fd = init_server_socket(port);
     if (server_fd < 0) {
         log_error("Failed to create socket");
@@ -94,15 +95,25 @@ void start_server(int port) {
         client->client_fd = client_fd;
         client->client_addr = client_addr;
 
-        pthread_t tid;
-        if (pthread_create(&tid, NULL, handle_client, client) != 0) {
-            perror("pthread_create()");
-            close(client_fd);
-            free(client);
-        } else {
-            pthread_detach(tid);
+        fd = fork();
+        if(fd < 0)
+        {
+            perror("fork()");
+            log_info("创建子进程失败");
+            return;
+        }
+        if(fd == 0)
+        {
+            handle_client((void *)client);
+            close(server_fd);//子进程关闭服务端监听文件描述符
+            exit(0);//处理完毕之后退出
+        }
+        else if(fd > 0)
+        {
+            close(client_fd);//关闭客户端fd(不需要的文件描述符)
         }
     }
+
 
     close(server_fd);
     log_info("Server stopped");

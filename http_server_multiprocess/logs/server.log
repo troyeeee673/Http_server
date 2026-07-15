@@ -1,0 +1,48 @@
+[2026-07-11 22:48:58] [INFO] Starting HTTP server on port 8080...
+[2026-07-11 22:50:26] [INFO] Starting HTTP server on port 8080...
+[2026-07-12 22:04:13] [INFO] Starting HTTP server on port 8080...
+[2026-07-12 22:04:13] [ERROR] Failed to create socket
+[2026-07-12 22:04:42] [INFO] Starting HTTP server on port 8080...
+[2026-07-12 22:04:42] [INFO] Server started on port 8080
+[2026-07-12 22:06:06] [INFO] Request file: www/index.html
+[2026-07-12 22:06:06] [INFO] Request file: www/style.css
+[2026-07-12 22:06:07] [INFO] Request file: www/favicon.ico
+[2026-07-12 22:06:11] [INFO] Request file: www/about.html
+[2026-07-12 22:06:11] [INFO] Request file: www/style.css
+[2026-07-12 22:06:13] [INFO] Request file: www/index.html
+[2026-07-12 22:06:13] [INFO] Request file: www/style.css
+[2026-07-12 22:06:14] [INFO] Request file: www/test.txt
+[2026-07-12 22:06:18] [INFO] Request file: www/api/test.json
+[2026-07-12 22:06:20] [INFO] Request file: www/images/
+[2026-07-12 22:06:23] [INFO] Request file: www/notexist.html
+[2026-07-12 22:06:25] [INFO] Request file: www/images/
+[2026-07-12 22:11:29] [INFO] Starting HTTP server on port 8080...
+[2026-07-12 22:11:29] [INFO] Server started on port 8080
+[2026-07-12 22:11:33] [INFO] Request file: www/index.html
+[2026-07-12 22:11:33] [INFO] Request file: www/style.css
+[2026-07-12 22:11:34] [INFO] Request file: www/favicon.ico
+[2026-07-12 22:11:36] [INFO] Request file: www/images/
+[2026-07-12 22:11:43] [INFO] Request file: www/test.txt
+[2026-07-12 22:11:46] [INFO] Request file: www/test.txt
+[2026-07-12 22:26:21] [INFO] Starting HTTP server on port 8080...
+[2026-07-12 22:26:21] [INFO] Server started on port 8080
+[2026-07-12 22:26:24] [INFO] Request file: www/index.html
+[2026-07-12 22:26:24] [INFO] Request file: www/style.css
+[2026-07-12 22:26:26] [INFO] Request file: www/about.html
+[2026-07-12 22:26:27] [INFO] Request file: www/style.css
+[2026-07-12 22:26:29] [INFO] Request file: www/test.txt
+[2026-07-12 22:26:31] [INFO] Request file: www/api/test.json
+[2026-07-12 22:26:33] [INFO] Request file: www/images/
+[2026-07-12 22:26:35] [INFO] Request file: www/notexist.html
+[2026-07-12 22:26:45] [INFO] Server stopped
+[2026-07-15 21:27:35] [INFO] Starting HTTP server on port 8080...
+[2026-07-15 21:27:35] [INFO] Server started on port 8080
+[2026-07-15 21:27:39] [INFO] Request file: www/index.html
+[2026-07-15 21:27:40] [INFO] Request file: www/style.css
+[2026-07-15 21:27:40] [INFO] Request file: www/favicon.ico
+[2026-07-15 21:27:41] [INFO] Request file: www/about.html
+[2026-07-15 21:27:41] [INFO] Request file: www/style.css
+[2026-07-15 21:27:45] [INFO] Request file: www/index.html
+[2026-07-15 21:27:45] [INFO] Request file: www/style.css
+[2026-07-15 21:27:46] [INFO] Request file: www/notexist.html
+[2026-07-15 21:28:08] [INFO] Server stopped
