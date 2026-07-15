@@ -1,0 +1,9 @@
+[2026-07-15 22:19:46] [INFO] Starting HTTP server on port 8080...
+[2026-07-15 22:19:46] [INFO] Server started on port 8080
+[2026-07-15 22:19:48] [INFO] Request file: www/index.html
+[2026-07-15 22:19:48] [INFO] Request file: www/style.css
+[2026-07-15 22:19:49] [INFO] Request file: www/about.html
+[2026-07-15 22:19:50] [INFO] Request file: www/style.css
+[2026-07-15 22:19:52] [INFO] Request file: www/index.html
+[2026-07-15 22:19:52] [INFO] Request file: www/style.css
+[2026-07-15 22:19:56] [INFO] Server stopped
