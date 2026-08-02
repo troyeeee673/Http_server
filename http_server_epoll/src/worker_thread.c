@@ -33,7 +33,7 @@ void *handle_client(void *arg)
     // 解析请求
     http_request_t request;
     memset(&request, 0, sizeof(request));
-    parse_http_request(data_receive, &request);
+    parse_http_request(data_receive, &request);//解析原始数据，回填request结构体
 
     printf("请求：%s %s\n", request.method, request.url);
 
