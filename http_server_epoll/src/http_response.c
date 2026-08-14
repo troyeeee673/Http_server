@@ -1,4 +1,32 @@
 #include "http_response.h"
+#include <sys/socket.h>
+
+int send_response_header(int client_fd, int status_code,
+                         const char *status_msg,
+                         const char *content_type,
+                         size_t content_length) {
+    char header[4096];
+    int len = snprintf(header, sizeof(header),
+        "HTTP/1.1 %d %s\r\n"
+        "Content-Type: %s\r\n"
+        "Content-Length: %zu\r\n"
+        "Connection: close\r\n"
+        "\r\n",
+        status_code, status_msg,
+        content_type ? content_type : "text/html",
+        content_length
+    );
+
+    ssize_t sent = 0;
+    while (sent < len) {
+        ssize_t n = send(client_fd, header + sent, len - sent, 0);
+        if (n <= 0) {
+            return -1;
+        }
+        sent += n;
+    }
+    return 0;
+}
 
 // ---------- 1. 通用响应构建 ----------
 void build_response(int status_code, const char *content_type,

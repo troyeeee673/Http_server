@@ -1,0 +1,56 @@
+[2026-08-14 10:06:02] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 10:06:02] [INFO] Server started on port 8080
+[2026-08-14 10:06:15] [INFO] Server stopped
+[2026-08-14 10:06:17] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 10:06:17] [INFO] Server started on port 8080
+[2026-08-14 10:06:19] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:19] [INFO] Request file: www/index.html
+[2026-08-14 10:06:19] [INFO] Send file: www/index.html, bytes: 1112
+[2026-08-14 10:06:19] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:20] [INFO] Request file: www/style.css
+[2026-08-14 10:06:20] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:20] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:20] [INFO] Request file: www/favicon.ico
+[2026-08-14 10:06:20] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:25] [INFO] Request file: www/about.html
+[2026-08-14 10:06:25] [INFO] Send file: www/about.html, bytes: 447
+[2026-08-14 10:06:25] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:25] [INFO] Request file: www/style.css
+[2026-08-14 10:06:25] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:27] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:27] [INFO] Request file: www/index.html
+[2026-08-14 10:06:27] [INFO] Send file: www/index.html, bytes: 1112
+[2026-08-14 10:06:27] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:27] [INFO] Request file: www/style.css
+[2026-08-14 10:06:27] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:27] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:28] [INFO] Request file: www/about.html
+[2026-08-14 10:06:28] [INFO] Send file: www/about.html, bytes: 447
+[2026-08-14 10:06:28] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:28] [INFO] Request file: www/style.css
+[2026-08-14 10:06:28] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:30] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:30] [INFO] Request file: www/index.html
+[2026-08-14 10:06:30] [INFO] Send file: www/index.html, bytes: 1112
+[2026-08-14 10:06:30] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:30] [INFO] Request file: www/style.css
+[2026-08-14 10:06:30] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:30] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:31] [INFO] Request file: www/test.txt
+[2026-08-14 10:06:31] [INFO] Send file: www/test.txt, bytes: 313
+[2026-08-14 10:06:31] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:33] [INFO] Request file: www/api/test.json
+[2026-08-14 10:06:33] [INFO] Send file: www/api/test.json, bytes: 248
+[2026-08-14 10:06:34] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:36] [INFO] Request file: www/images/
+[2026-08-14 10:06:36] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:37] [INFO] Request file: www/index.html
+[2026-08-14 10:06:37] [INFO] Send file: www/index.html, bytes: 1112
+[2026-08-14 10:06:38] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:38] [INFO] Request file: www/style.css
+[2026-08-14 10:06:38] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 10:06:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:40] [INFO] Request file: www/notexist.html
+[2026-08-14 10:06:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 10:06:41] [INFO] 新客户端连接 fd=7
+[2026-08-14 10:06:52] [INFO] Server stopped

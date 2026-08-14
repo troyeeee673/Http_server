@@ -12,7 +12,7 @@
 #define MAX_HTML    16384
 
 
-void handle_file_request(const http_request_t *request, char *response);
+void handle_file_request(int client_fd, const http_request_t *request);
 const char *get_mime_type(const char *file_path);
 
 #endif

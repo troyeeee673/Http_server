@@ -38,15 +38,9 @@ void *handle_client(void *arg)
 
     printf("请求：%s %s\n", request.method, request.url);
 
-    // 处理请求，构建响应
-    char response[RESPONSE_SIZE] = {0};
-    handle_file_request(&request, response);
+    // 处理请求并直接发送文件内容
+    handle_file_request(client_fd, &request);
 
-    // 发送响应
-    send(client_fd, response, strlen(response), 0);
-    off_t offset = 0;
-    
-    // sendfile(client_fd, file_fd, &offset, count);
     // 关闭连接，释放资源
     close(client_fd);
     free(client_info);

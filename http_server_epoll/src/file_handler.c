@@ -1,16 +1,22 @@
 #include "file_handler.h"
+#include <sys/sendfile.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
 
 // 前向声明
-static void serve_file(const char *file_path, char *response);
-static void serve_directory_listing(const char *dir_path, const char *url, char *response);
+static void serve_file(int client_fd, const char *file_path);
+static void serve_directory_listing(int client_fd, const char *dir_path, const char *url);
 
-void handle_file_request(const http_request_t *request, char *response) {
+void handle_file_request(int client_fd, const http_request_t *request) {
     char file_path[MAX_PATH];
     struct stat file_stat;
 
     // 安全检查
     if (strstr(request->url, "..") || strstr(request->url, "//")) {
+        char response[RESPONSE_SIZE] = {0};
         build_error_response(403, "Forbidden", response);
+        send(client_fd, response, strlen(response), 0);
         return;
     }
 
@@ -25,64 +31,90 @@ void handle_file_request(const http_request_t *request, char *response) {
 
     // 检查文件是否存在
     if (stat(file_path, &file_stat) < 0) {
+        char response[RESPONSE_SIZE] = {0};
         build_error_response(404, "File Not Found", response);
+        send(client_fd, response, strlen(response), 0);
         return;
     }
 
     // 目录处理
     if (S_ISDIR(file_stat.st_mode)) {
-        // 检查目录下是否有 index.html
         char index_path[MAX_PATH];
         snprintf(index_path, sizeof(index_path), "%s/index.html", file_path);
 
         if (stat(index_path, &file_stat) == 0 && S_ISREG(file_stat.st_mode)) {
-            serve_file(index_path, response);
+            serve_file(client_fd, index_path);
         } else {
-            serve_directory_listing(file_path, request->url, response);
+            serve_directory_listing(client_fd, file_path, request->url);
         }
         return;
     }
 
     // 返回文件
-    serve_file(file_path, response);
+    serve_file(client_fd, file_path);
 }
 
-static void serve_file(const char *file_path, char *response) {
-    FILE *file = fopen(file_path, "rb");
-    if (!file) {
+static void serve_file(int client_fd, const char *file_path) {
+    int file_fd = open(file_path, O_RDONLY);
+    if (file_fd < 0) {
+        char response[RESPONSE_SIZE] = {0};
         build_error_response(404, "File Not Found", response);
+        send(client_fd, response, strlen(response), 0);
         return;
     }
 
-    fseek(file, 0, SEEK_END);
-    long file_size = ftell(file);
-    fseek(file, 0, SEEK_SET);
+    struct stat file_stat;
+    if (fstat(file_fd, &file_stat) < 0) {
+        perror("fstat()");
+        close(file_fd);
+        return;
+    }
 
-    if (file_size > 10 * 1024 * 1024) {
-        fclose(file);
+    if (file_stat.st_size > 10 * 1024 * 1024) {
+        close(file_fd);
+        char response[RESPONSE_SIZE] = {0};
         build_error_response(413, "File Too Large", response);
+        send(client_fd, response, strlen(response), 0);
         return;
     }
 
-    char *file_data = malloc(file_size + 1);
-    if (!file_data) {
-        fclose(file);
-        build_error_response(500, "Memory Allocation Failed", response);
+    const char *content_type = get_mime_type(file_path);
+    if (send_response_header(client_fd, 200, "OK", content_type, file_stat.st_size) < 0) {
+        close(file_fd);
         return;
     }
 
-    fread(file_data, 1, file_size, file);
-    file_data[file_size] = '\0';
-    fclose(file);
+    off_t offset = 0;
+    off_t remaining = file_stat.st_size;
+    ssize_t sent_bytes = 0;
 
-    build_file_response(file_path, file_data, file_size, response);
-    free(file_data);
+    while (remaining > 0) {
+        ssize_t n = sendfile(client_fd, file_fd, &offset, remaining);
+        if (n < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                usleep(1000);
+                continue;
+            }
+            perror("sendfile()");
+            break;
+        }
+        if (n == 0) {
+            break;
+        }
+        remaining -= n;
+        sent_bytes += n;
+    }
+
+    log_info("Send file: %s, bytes: %ld", file_path, sent_bytes);
+    close(file_fd);
 }
 
-static void serve_directory_listing(const char *dir_path, const char *url, char *response) {
+static void serve_directory_listing(int client_fd, const char *dir_path, const char *url) {
     DIR *dir = opendir(dir_path);
     if (!dir) {
+        char response[RESPONSE_SIZE] = {0};
         build_error_response(500, "Cannot Open Directory", response);
+        send(client_fd, response, strlen(response), 0);
         return;
     }
 
@@ -153,7 +185,15 @@ static void serve_directory_listing(const char *dir_path, const char *url, char 
     snprintf(html + offset, sizeof(html) - offset,
         "</table>\n</body>\n</html>\n");
 
-    build_response(200, "text/html; charset=utf-8", html, strlen(html), response);
+    size_t html_len = strlen(html);
+    if (send_response_header(client_fd, 200, "OK", "text/html; charset=utf-8", html_len) == 0) {
+        ssize_t sent = 0;
+        while (sent < (ssize_t)html_len) {
+            ssize_t n = send(client_fd, html + sent, html_len - sent, 0);
+            if (n <= 0) break;
+            sent += n;
+        }
+    }
 }
 
 const char *get_mime_type(const char *file_path) {

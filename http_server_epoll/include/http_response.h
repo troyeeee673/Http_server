@@ -8,6 +8,11 @@
 #define RESPONSE_SIZE   8192
 #define BUFFER_SIZE     4096
 
+int send_response_header(int client_fd, int status_code,
+                         const char *status_msg,
+                         const char *content_type,
+                         size_t content_length);
+
 // 通用响应构建
 void build_response(int status_code, const char *content_type,
                     const char *body, int body_len, char *response);
