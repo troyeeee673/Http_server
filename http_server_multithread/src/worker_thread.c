@@ -7,7 +7,6 @@
 #include "worker_thread.h"
 #include "http_parser.h"
 #include "file_handler.h"
-#include <sys/sendfile.h>
 
 void *handle_client(void *arg)
 {
@@ -34,7 +33,7 @@ void *handle_client(void *arg)
     // 解析请求
     http_request_t request;
     memset(&request, 0, sizeof(request));
-    parse_http_request(data_receive, &request);
+    parse_http_request(data_receive, &request);//解析原始数据，回填request结构体
 
     printf("请求：%s %s\n", request.method, request.url);
 
@@ -44,9 +43,7 @@ void *handle_client(void *arg)
 
     // 发送响应
     send(client_fd, response, strlen(response), 0);
-    off_t offset = 0;
-    
-    // sendfile(client_fd, file_fd, &offset, count);
+
     // 关闭连接，释放资源
     close(client_fd);
     free(client_info);
