@@ -41,22 +41,23 @@ void parse_http_request(const char *raw_data, http_request_t *request) {
     // 初始化
     memset(request, 0, sizeof(http_request_t));
 
-    // ---------- 1. 解析请求行: METHOD URL VERSION ----------
+    // ---------- 1. 解析请求行: 方法 请求URL Http版本 ----------
     // 找到第一行结束位置
     line_end = strstr(ptr, "\r\n");
     if (!line_end) return;
 
     // 提取请求行
     char request_line[512] = {0};
-    size_t line_len = line_end - ptr;
+    size_t line_len = line_end - ptr;//请求行长度
+    // 限制长度
     if (line_len > sizeof(request_line) - 1) line_len = sizeof(request_line) - 1;
-    strncpy(request_line, ptr, line_len);
+    strncpy(request_line, ptr, line_len);//拷贝请求行数据到request_line
 
-    // 解析 METHOD URL VERSION
+    // 解析 方法 请求URL Http版本
     sscanf(request_line, "%7s %255s %15s",
            request->method, request->url, request->version);
 
-    ptr = line_end + 2;  // 跳过 \r\n
+    ptr = line_end + 2;  // 跳过 \r\n，到下一行
 
     // ---------- 2. 解析请求头 ----------
     request->header_count = 0;
