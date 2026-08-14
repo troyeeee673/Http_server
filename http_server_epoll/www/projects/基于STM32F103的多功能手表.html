@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于STM32的多功能电子手表</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: #f6f8fa;
+            color: #1f2328;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 标题 ===== */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            border-bottom: 3px solid #e1e4e8;
+            padding-bottom: 16px;
+        }
+
+        .subtitle {
+            color: #57606a;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        /* ===== 链接 ===== */
+        a {
+            color: #0969da;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #1f2328;
+            color: #fff !important;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .github-link:hover {
+            background: #2d333b;
+            text-decoration: none;
+        }
+
+        /* ===== 二级标题 ===== */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 8px;
+        }
+
+        /* ===== 三级标题 ===== */
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== 段落 ===== */
+        p {
+            margin-bottom: 16px;
+        }
+
+        /* ===== 列表 ===== */
+        ul,
+        ol {
+            margin: 12px 0 20px 24px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* ===== 表格 ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 28px;
+            font-size: 0.95rem;
+        }
+        th,
+        td {
+            border: 1px solid #d0d7de;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        /* ===== 代码块 ===== */
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 8px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+            margin: 16px 0 20px;
+            border: 1px solid #e1e4e8;
+        }
+        code {
+            background-color: #f0f2f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* ===== 视频容器 ===== */
+        .video-wrapper {
+            margin: 24px 0 28px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        .video-caption {
+            text-align: center;
+            color: #57606a;
+            font-size: 0.9rem;
+            margin-top: -12px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 标签/徽章 ===== */
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            color: #1f2328;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 10px;
+            }
+            .container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 6px 10px;
+            }
+            pre {
+                padding: 12px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== 标题区 ===== -->
+        <h1>⌚ 基于STM32的多功能电子手表</h1>
+        <div class="subtitle">
+            <span>🏷️</span>
+            <span class="tag">嵌入式</span>
+            <span class="tag">STM32</span>
+            <span class="tag">驱动开发</span>
+            <span class="tag">MPU6050</span>
+            <span class="tag">姿态解算</span>
+            <span class="tag">分层架构</span>
+            <br>
+            <span style="color:#57606a; font-size:0.9rem;">
+                基于STM32F103平台，采用分层驱动架构实现的多功能电子手表，集成MPU6050姿态解算、电池管理和多级菜单系统。
+            </span>
+            <br>
+        </div>
+
+        <!-- ===== 项目简介 ===== -->
+        <h2>项目简介</h2>
+        <p>
+            本项目基于<strong>STM32F103C8T6</strong>平台，从底层驱动到上层应用完整实现了一款多功能电子手表。项目采用<strong>分层驱动架构</strong>（APP/BSP/Driver/Service四层），独立封装了ADC采样、软件I2C通信、MPU6050传感器驱动、按键检测等硬件抽象层，并在此基础上构建了姿态解算、电池管理、输入事件处理等应用服务。最终实现了时钟显示、水平仪、秒表计时、小游戏等完整功能。
+        </p>
+
+        <!-- ===== 功能 ===== -->
+        <h2>功能</h2>
+        <p><strong>基础功能</strong>：</p>
+        <ul>
+            <li>RTC实时时钟显示</li>
+            <li>多级菜单系统（设置、游戏、工具页面切换）</li>
+            <li>3按键交互（上/下/确认，支持长按事件）</li>
+        </ul>
+        <p><strong>传感器功能</strong>：</p>
+        <ul>
+            <li>数字水平仪（实时显示Roll/Pitch/Yaw姿态角）</li>
+            <li>MPU6050六轴数据采集与姿态解算</li>
+        </ul>
+        <p><strong>电源管理</strong>：</p>
+        <ul>
+            <li>ADC电池电压实时采样</li>
+            <li>电量百分比计算与显示</li>
+            <li>低功耗电源保持电路控制</li>
+        </ul>
+        <p><strong>娱乐工具</strong>：</p>
+        <ul>
+            <li>小游戏</li>
+            <li>秒表计时器</li>
+            <li>LED手电筒</li>
+        </ul>
+
+        <!-- ===== 技术栈 ===== -->
+        <h2>技术栈</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>技术领域</th>
+                    <th>具体实现</th>
+                    <th>个人能力体现</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>驱动编程</td><td>软件模拟I2C、GPIO、ADC、TIM</td><td>外设驱动独立封装能力</td></tr>
+                <tr><td>系统架构</td><td>四层分层驱动（APP/BSP/Driver/Service）</td><td>模块化设计与解耦能力</td></tr>
+                <tr><td>姿态算法</td><td>互补滤波（加速度计+陀螺仪融合）</td><td>传感器数据处理能力</td></tr>
+                <tr><td>定时调度</td><td>TIM2 1ms中断 + 统一事件分发</td><td>实时系统时序控制</td></tr>
+                <tr><td>滤波处理</td><td>ADC均值滤波降噪</td><td>信号处理基础</td></tr>
+                <tr><td>代码规范</td><td>Doxygen注释 + 匈牙利命名 + 集中配置管理</td><td>工程化编码习惯</td></tr>
+                <tr><td>开发工具</td><td>Keil MDK, J-Link调试</td><td>嵌入式工具链使用</td></tr>
+            </tbody>
+        </table>
+
+
+        <!-- ===== 系统架构 ===== -->
+        <h2>系统架构</h2>
+        <p>
+            项目按职责划分为四个层次，各层之间通过明确的接口调用，实现硬件无关性与模块可替换性：
+        </p>
+        <pre><code>┌─────────────────────────────────────┐
+│  APP 层    手表应用页面调度          │
+│            (app_watch.c)            │
+├─────────────────────────────────────┤
+│  Service层  姿态解算 | 电池管理      │
+│            输入事件处理              │
+├─────────────────────────────────────┤
+│  Driver层   ADC | I2C | MPU6050    │
+│            KEY | LED 硬件抽象        │
+├─────────────────────────────────────┤
+│  BSP 层    板级初始化 | 1ms tick    │
+├─────────────────────────────────────┤
+│  Hardware   STM32 HAL/CMSIS         │
+└─────────────────────────────────────┘</code></pre>
+
+        <!-- ===== 核心技术实现 ===== -->
+        <h2>核心技术实现</h2>
+
+        <h3>1. 软件模拟I2C通信协议</h3>
+        <p>
+            使用GPIO（PB10/PB11）在标准IO口上实现完整的I2C主机通信协议，驱动MPU6050传感器和OLED显示屏：
+        </p>
+        <ul>
+            <li>严格遵循I2C时序规范（起始条件、停止条件、ACK/NACK检测）</li>
+            <li>支持单字节/多字节连续读写</li>
+            <li>实现设备地址+寄存器地址的标准访问模式</li>
+        </ul>
+        <pre><code>// I2C连续读取MPU6050六轴数据（14字节）
+uint8_t DrvMpu6050_ReadReg(uint8_t regAddress)
+{
+    uint8_t ucData;
+
+    DrvI2cSoft_Start();
+    DrvI2cSoft_SendByte(MPU6050_ADDRESS);
+    DrvI2cSoft_ReceiveAck();
+    DrvI2cSoft_SendByte(regAddress);
+    DrvI2cSoft_ReceiveAck();
+
+    DrvI2cSoft_Start();
+    DrvI2cSoft_SendByte(MPU6050_ADDRESS | 0x01);
+    DrvI2cSoft_ReceiveAck();
+    ucData = DrvI2cSoft_ReceiveByte();
+    DrvI2cSoft_SendAck(1);
+    DrvI2cSoft_Stop();
+
+    return ucData;
+}</code></pre>
+
+        <h3>2. MPU6050姿态解算与互补滤波</h3>
+        <p>
+            独立完成从原始六轴数据到姿态角的完整处理链路：
+        </p>
+        <ul>
+            <li><strong>原始数据采集</strong>：通过软件I2C读取三轴加速度+三轴陀螺仪数据</li>
+            <li><strong>加速度计倾角计算</strong>：利用重力分量反算Roll/Pitch静态倾角</li>
+            <li><strong>陀螺仪角速度积分</strong>：对角速度进行时间积分获得动态角度</li>
+            <li><strong>互补滤波融合</strong>：利用加速度计低频准确性与陀螺仪高频响应性，通过互补滤波器消除积分漂移</li>
+        </ul>
+        <pre><code>// 互补滤波核心公式
+angle = 0.98 * (angle + gyro * dt) + 0.02 * accel_angle;</code></pre>
+        <p>
+            滤波器参数通过 <code>project_config.h</code> 集中配置，便于调试与优化。
+        </p>
+
+        <h3>3. 1ms精确时基调度系统</h3>
+        <p>
+            基于TIM2硬件定时器构建系统时基，实现多任务精确调度：
+        </p>
+        <ul>
+            <li>配置TIM2为1ms周期中断</li>
+            <li>中断服务函数统一调用 <code>Bsp_Tick1ms()</code> 分发入口</li>
+            <li>驱动多个周期性任务：按键扫描消抖、秒表计时、游戏帧更新、OLED刷新</li>
+        </ul>
+        <pre><code>void TIM2_IRQHandler(void)
+{
+    if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
+    {
+        Bsp_Tick1ms();  // 统一分发至各模块
+        TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+    }
+}</code></pre>
+        <p>
+            这种设计避免多处配置定时器导致的资源冲突，保证系统时序一致性。
+        </p>
+
+        <h3>4. 按键事件识别与消抖</h3>
+        <p>
+            <code>input_service</code> 模块实现按键状态机，支持短按与长按事件识别：
+        </p>
+        <ul>
+            <li><strong>消抖处理</strong>：连续多次采样确认，消除机械抖动</li>
+            <li><strong>长按检测</strong>：可配置长按时间阈值（通过 <code>project_config.h</code> 设置）</li>
+            <li><strong>事件缓存</strong>：缓存按键事件供上层应用轮询消费</li>
+            <li>定义 <code>emKeyEventTdf</code> 枚举类型，统一事件语义（短按/长按/按下/释放）</li>
+        </ul>
+
+        <h3>5. ADC电池电压监测</h3>
+        <p>
+            <code>battery_service</code> 模块实现完整的电池监测功能：
+        </p>
+        <ul>
+            <li><strong>均值滤波</strong>：配置N次采样取平均（<code>project_config.h</code> 中可调），有效抑制ADC噪声</li>
+            <li><strong>电压换算</strong>：<code>Vbat = (float)ADValue / 4095 * Vref</code>，避免整数除法精度损失</li>
+            <li><strong>电量映射</strong>：根据锂电池放电曲线将电压分段映射为0-100%电量</li>
+            <li>提供 <code>BatteryService_GetVoltage()</code> 和 <code>BatteryService_GetCapacity()</code> 统一接口</li>
+        </ul>
+
+        <h3>6. 工程化代码规范</h3>
+        <p>
+            项目全程遵循一套自定的嵌入式编码规范：
+        </p>
+        <ul>
+            <li><strong>文件头注释</strong>：统一 <code>@file</code>、<code>@author</code>、<code>@version</code>、<code>@date</code>、<code>@brief</code> 格式</li>
+            <li><strong>命名约定</strong>：
+                <ul>
+                    <li>设备层枚举使用 <code>em...Tdf</code> 前缀，结构体使用 <code>st...Tdf</code> 前缀</li>
+                    <li>模块私有函数使用 <code>s_</code> 前缀</li>
+                    <li>局部变量使用类型语义前缀（<code>uc</code>无符号字符、<code>us</code>无符号短整型、<code>st</code>结构体、<code>em</code>枚举）</li>
+                </ul>
+            </li>
+            <li><strong>集中配置</strong>：<code>BSP/project_config.h</code> 集中管理所有可调参数（采样次数、阈值、滤波系数等）</li>
+            <li><strong>接口注释</strong>：所有公开函数包含 <code>@brief</code>、<code>@param</code>、<code>@retval</code> 文档注释</li>
+        </ul>
+
+        <!-- ===== 开发环境 ===== -->
+        <h2>开发环境</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>主控</td><td>STM32F103C8T6 (ARM Cortex-M3, 72MHz, 64KB Flash, 20KB SRAM)</td></tr>
+                <tr><td>传感器</td><td>MPU6050（三轴陀螺仪 + 三轴加速度计）</td></tr>
+                <tr><td>显示</td><td>OLED 0.96寸 SSD1306 (128×64, I2C接口)</td></tr>
+                <tr><td>IDE</td><td>Keil MDK UV4</td></tr>
+                <tr><td>调试器</td><td>ST-Link</td></tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品集</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: #f4f6f9;
+            color: #1f2328;
+            padding: 40px 24px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===== 页面头部 ===== */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 18px;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1f2328;
+        }
+
+        .page-header .sub {
+            font-size: 1rem;
+            color: #57606a;
+            background: #eef2f6;
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        /* ===== 作品卡片（主推） ===== */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid rgba(225, 228, 232, 0.5);
+            transition: box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.09);
+        }
+
+        /* 卡片头部 — 缩略图/Emoji 占位 */
+        .card-thumb {
+            background: #e8ecf2;
+            padding: 40px 20px 28px;
+            text-align: center;
+            font-size: 5rem;
+            border-bottom: 1px solid #e1e4e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d333b;
+            transition: background 0.2s;
+            min-height: 160px;
+        }
+
+        .card:hover .card-thumb {
+            background: #e0e5ed;
+        }
+
+        /* 卡片主体 */
+        .card-body {
+            padding: 28px 34px 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1f2328;
+        }
+
+        .card-body .tags {
+            margin: 8px 0 14px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            color: #1f2328;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 16px;
+            border-radius: 30px;
+            margin-right: 8px;
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .card-body .desc {
+            color: #424a53;
+            font-size: 1rem;
+            margin: 6px 0 16px;
+            flex: 1;
+        }
+
+        .card-body .desc strong {
+            color: #1f2328;
+        }
+
+        /* 特性网格 (2列) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+            background: #f8f9fb;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 10px 0 18px;
+            border: 1px solid #eef0f4;
+        }
+
+        .feature-grid span {
+            font-size: 0.92rem;
+            color: #2d333b;
+        }
+
+        .feature-grid .label {
+            color: #57606a;
+            font-weight: 400;
+        }
+
+        /* 卡片底部 — 按钮组 */
+        .card-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-start;
+            border-top: 1px solid #f0f2f5;
+            padding-top: 22px;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1f2328;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2d333b;
+            text-decoration: none;
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1f2328;
+            border: 1.5px solid #d0d7de;
+        }
+
+        .btn-outline:hover {
+            background: #f6f8fa;
+            border-color: #8b949e;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #1f2328;
+            border: 1.5px solid transparent;
+            padding: 10px 20px;
+        }
+
+        .btn-ghost:hover {
+            background: #f0f2f5;
+            border-color: #e1e4e8;
+        }
+
+        /* ===== 后续作品占位区 ===== */
+        .placeholder-section {
+            margin-top: 8px;
+            padding-top: 20px;
+            border-top: 2px dashed #d0d7de;
+        }
+
+        .placeholder-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #57606a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .placeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .placeholder-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 20px 22px;
+            border: 1px solid #e1e4e8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .placeholder-item:hover {
+            border-color: #b0b8c4;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .placeholder-item .icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2328;
+            margin-bottom: 4px;
+        }
+
+        .placeholder-item .meta {
+            font-size: 0.85rem;
+            color: #57606a;
+            margin-bottom: 12px;
+        }
+
+        .placeholder-item .btn-small {
+            align-self: flex-start;
+            font-size: 0.8rem;
+            padding: 4px 16px;
+            border-radius: 30px;
+            background: #eef2f6;
+            color: #1f2328;
+            text-decoration: none;
+            border: 1px solid #d0d7de;
+            transition: background 0.15s;
+            margin-top: auto;
+        }
+
+        .placeholder-item .btn-small:hover {
+            background: #e1e6ed;
+            text-decoration: none;
+        }
+
+        .placeholder-item .coming {
+            display: inline-block;
+            background: #f0f2f5;
+            color: #57606a;
+            font-size: 0.7rem;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin-top: 8px;
+            align-self: flex-start;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 24px 16px;
+            }
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .page-header h1 {
+                font-size: 1.7rem;
+            }
+            .card-body {
+                padding: 22px 20px 26px;
+            }
+            .card-body h2 {
+                font-size: 1.4rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 4px 0;
+                padding: 14px 18px;
+            }
+            .card-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .placeholder-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .placeholder-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-thumb {
+                font-size: 3.8rem;
+                min-height: 120px;
+                padding: 28px 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== 页面头部 ===== -->
+        <header class="page-header">
+            <h1>作品展示</h1>
+        </header>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>基于Linux的流媒体广播系统</h2>
+                <div class="tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">IPv6多播</span>
+                    <span class="tag">多线程</span>
+                    <span class="tag">令牌桶</span>
+                    <span class="tag">守护进程</span>
+                </div>
+                <p class="desc">
+                    <strong>多频道流媒体广播</strong> · 客户端-服务器架构，通过 IPv6 多播实现音频流高效分发。
+                    支持最多 100 个频道并发，节目单自动推送，令牌桶流量控制，守护进程模式。
+                </p>
+
+                <!-- 特性快览 -->
+                <div class="feature-grid">
+                    <span><span class="label">并发</span> 100 频道 / 独立线程</span>
+                    <span><span class="label">流量控制</span> 令牌桶 (64kbps)</span>
+                    <span><span class="label">网络</span> IPv6 多播</span>
+                    <span><span class="label">进程</span> 守护进程 + syslog</span>
+                    <span><span class="label">客户端</span> 管道转发 + mpg123</span>
+                    <span><span class="label">信号</span> 优雅退出 (SIGTERM)</span>
+                </div>
+
+                <!-- 跳转链接 -->
+                <div class="card-footer">
+                    <a href="/projects/流媒体广播.html" class="btn">查看详情</a>
+                    <a href="https://github.com/troyeeee673/my-radio-project" class="btn btn-outline" target="_blank">GitHub 源码</a>
+                    <a href="/videos/my-radio-demo.mp4" class="btn btn-outline" target="_blank">演示视频</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>驿站快递服务平台</h2>
+                <div class="tags">
+                    <span class="tag">C语言</span>
+                    <span class="tag">哈希表</span>
+                    <span class="tag">SQLite</span>
+                    <span class="tag">双写一致性</span>
+                    <span class="tag">事务保护</span>
+                </div>
+                <p class="desc">
+                    <strong>快递入库/出库/查询系统</strong> · 基于 C 语言实现，采用哈希表（链地址法）实现 O(1) 高效存储，
+                    SQLite 实现数据持久化，支持双写一致性与事务保护。
+                </p>
+
+                <!-- 特性快览 -->
+                <div class="feature-grid">
+                    <span><span class="label">数据结构</span> 哈希表 + 动态扩容</span>
+                    <span><span class="label">持久化</span> SQLite3</span>
+                    <span><span class="label">一致性</span> 双写 + 回滚机制</span>
+                    <span><span class="label">事务</span> SQLite 事务保护</span>
+                    <span><span class="label">终端UI</span> VT100 彩色输出</span>
+                    <span><span class="label">构建</span> Makefile</span>
+                </div>
+
+                <!-- 跳转链接 -->
+                <div class="card-footer">
+                    <a href="/projects/驿站快递服务.html" class="btn">查看详情</a>
+                    <a href="https://github.com/troyeeee673/Delivery_service" class="btn btn-outline" target="_blank">GitHub 源码</a>
+                    <a href="/videos/delivery_service_demo.mp4" class="btn btn-outline" target="_blank">演示视频</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>多功能电子手表</h2>
+                <div class="tags">
+                    <span class="tag">嵌入式</span>
+                    <span class="tag">STM32</span>
+                    <span class="tag">驱动开发</span>
+                    <span class="tag">MPU6050</span>
+                    <span class="tag">姿态解算</span>
+                </div>
+                <p class="desc">
+                    <strong>基于STM32F103的多功能电子手表</strong> · 采用分层驱动架构（APP/BSP/Driver/Service四层），
+                    集成MPU6050姿态解算、电池管理和多级菜单系统，实现时钟显示、水平仪、秒表计时、小游戏等完整功能。
+                </p>
+
+                <!-- 特性快览 -->
+                <div class="feature-grid">
+                    <span><span class="label">主控</span> STM32F103C8T6</span>
+                    <span><span class="label">传感器</span> MPU6050 六轴</span>
+                    <span><span class="label">姿态算法</span> 互补滤波融合</span>
+                    <span><span class="label">显示</span> OLED 0.96寸 SSD1306</span>
+                    <span><span class="label">交互</span> 3按键 + 长按识别</span>
+                    <span><span class="label">电源</span> ADC电池监测</span>
+                </div>
+
+                <!-- 跳转链接 -->
+                <div class="card-footer">
+                    <a href="/projects/基于STM32F103的多功能手表.html" class="btn">查看详情</a>
+                    <a href="https://github.com/troyeeee673/Watch_STM32f103" class="btn btn-outline" target="_blank">GitHub 源码</a>
+                    <a href="/videos/stm32f103_watch_demo.mp4" class="btn btn-outline" target="_blank">演示视频</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>两轮平衡车控制项目</h2>
+                <div class="tags">
+                    <span class="tag">嵌入式</span>
+                    <span class="tag">STM32</span>
+                    <span class="tag">电机控制</span>
+                    <span class="tag">MPU6050</span>
+                    <span class="tag">PID控制</span>
+                </div>
+                <p class="desc">
+                    <strong>基于STM32F103的两轮平衡车</strong> · 集成MPU6050姿态采集、编码器测速、电机PWM驱动、
+                    按键控制与电池状态检测，构建完整的嵌入式控制链路。
+                </p>
+
+                <!-- 特性快览 -->
+                <div class="feature-grid">
+                    <span><span class="label">主控</span> STM32F103C8T6</span>
+                    <span><span class="label">传感器</span> MPU6050 六轴</span>
+                    <span><span class="label">驱动芯片</span> TB6612</span>
+                    <span><span class="label">反馈方式</span> 编码器脉冲计数</span>
+                    <span><span class="label">通信</span> I2C / USART</span>
+                    <span><span class="label">开发工具</span> Keil MDK</span>
+                </div>
+
+                <!-- 跳转链接 -->
+                <div class="card-footer">
+                    <a href="/projects/平衡车.html" class="btn">查看详情</a>
+                    <a href="https://github.com/troyeeee673/Balance_Car" class="btn btn-outline" target="_blank">GitHub 源码</a>
+                    <a href="/videos/balance_car_demo.mp4" class="btn btn-outline" target="_blank">演示视频</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>HTTP 静态文件服务器</h2>
+                <div class="tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">网络编程</span>
+                    <span class="tag">epoll</span>
+                    <span class="tag">sendfile</span>
+                    <span class="tag">多线程</span>
+                </div>
+                <p class="desc">
+                    <strong>基于 epoll 事件驱动的 HTTP 静态文件服务器</strong> · 实现 epoll+sendfile、多进程、多线程
+                    三种并发模型，支持静态资源服务、目录浏览、MIME 类型识别。
+                </p>
+
+                <!-- 特性快览 -->
+                <div class="feature-grid">
+                    <span><span class="label">并发模型</span> epoll / fork / pthread</span>
+                    <span><span class="label">文件传输</span> sendfile 零拷贝</span>
+                    <span><span class="label">协议</span> HTTP/1.1</span>
+                    <span><span class="label">资源类型</span> MIME 动态识别</span>
+                    <span><span class="label">错误响应</span> 403 / 404 / 413 / 500</span>
+                    <span><span class="label">开发工具</span> GCC + Make</span>
+                </div>
+
+                <!-- 跳转链接 -->
+                <div class="card-footer">
+                    <a href="/projects/基于Epoll的并发Http服务器.html" class="btn">查看详情</a>
+                    <a href="https://github.com/troyeeee673/Http_server" class="btn btn-outline" target="_blank">GitHub 源码</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

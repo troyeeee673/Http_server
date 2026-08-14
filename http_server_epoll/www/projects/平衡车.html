@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于STM32的两轮平衡车控制项目</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: #f6f8fa;
+            color: #1f2328;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 标题 ===== */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            border-bottom: 3px solid #e1e4e8;
+            padding-bottom: 16px;
+        }
+
+        .subtitle {
+            color: #57606a;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        /* ===== 链接 ===== */
+        a {
+            color: #0969da;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #1f2328;
+            color: #fff !important;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .github-link:hover {
+            background: #2d333b;
+            text-decoration: none;
+        }
+
+        /* ===== 二级标题 ===== */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 8px;
+        }
+
+        /* ===== 三级标题 ===== */
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== 段落 ===== */
+        p {
+            margin-bottom: 16px;
+        }
+
+        /* ===== 列表 ===== */
+        ul,
+        ol {
+            margin: 12px 0 20px 24px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* ===== 表格 ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 28px;
+            font-size: 0.95rem;
+        }
+        th,
+        td {
+            border: 1px solid #d0d7de;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        /* ===== 代码块 ===== */
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 8px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+            margin: 16px 0 20px;
+            border: 1px solid #e1e4e8;
+        }
+        code {
+            background-color: #f0f2f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* ===== 视频容器 ===== */
+        .video-wrapper {
+            margin: 24px 0 28px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        .video-caption {
+            text-align: center;
+            color: #57606a;
+            font-size: 0.9rem;
+            margin-top: -12px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 标签/徽章 ===== */
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            color: #1f2328;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 10px;
+            }
+            .container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 6px 10px;
+            }
+            pre {
+                padding: 12px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== 标题区 ===== -->
+        <h1>⚖️ 基于STM32的两轮平衡车控制项目</h1>
+        <div class="subtitle">
+            <span>🏷️</span>
+            <span class="tag">嵌入式</span>
+            <span class="tag">STM32</span>
+            <span class="tag">平衡车</span>
+            <span class="tag">电机控制</span>
+            <span class="tag">MPU6050</span>
+            <span class="tag">PID控制</span>
+            <br>
+            <span style="color:#57606a; font-size:0.9rem;">
+                基于STM32F103平台实现的两轮平衡车控制工程，集成MPU6050姿态采集、编码器测速、电机PWM驱动、按键控制与电池状态检测。
+            </span>
+            <br>
+        </div>
+
+        <!-- ===== 项目简介 ===== -->
+        <h2>项目简介</h2>
+        <p>
+            这个项目是一个基于 <strong>STM32F103</strong> 的两轮平衡车控制工程，在嵌入式系统层面把传感器采集、姿态估计、电机驱动、编码器测速、按键控制和电源状态管理串联起来，同时集成移动端的简单控制app，形成一个可运行的、完善的控制平台。
+        </p>
+        <p>
+            这个项目偏向<strong>控制系统与驱动实现</strong>，并且兼顾移动端app开发：它使用 <strong>MPU6050</strong> 读取姿态信息，利用编码器实现轮速反馈，并通过 <strong>PWM</strong> 驱动 <strong>TB6612</strong> 驱动芯片控制左右电机。
+        </p>
+
+        <!-- ===== 项目目标 ===== -->
+        <h2>项目目标</h2>
+        <p>这个平衡车项目的核心目标是搭建一套可验证的嵌入式控制链路：</p>
+        <ul>
+            <li>通过 MPU6050 获取车体姿态数据</li>
+            <li>通过编码器获取左右轮的转角与转速信息</li>
+            <li>通过 PWM 控制电机输出，实现车轮驱动</li>
+            <li>通过按键和电压检测模块完成基础交互与状态管理</li>
+            <li>将这些模块组织成一个便于调试和扩展的工程结构</li>
+        </ul>
+
+        <!-- ===== 主要功能 ===== -->
+        <h2>主要功能</h2>
+
+        <h3>1. 姿态传感与数据采集</h3>
+        <p>
+            项目中使用了 MPU6050 六轴传感器，通过 I2C 通信读取加速度和陀螺仪数据，获取车体的姿态相关信息：
+        </p>
+        <ul>
+            <li>加速度数据：用于辅助判断车体倾斜方向</li>
+            <li>陀螺仪数据：用于获取角速度变化</li>
+            <li>温度读取：用于辅助传感器状态监测</li>
+        </ul>
+        <p>
+            代码中通过独立的 MPU6050 模块完成初始化、数据更新和读取接口封装，便于后续控制算法接入。
+        </p>
+
+        <h3>2. 电机驱动与PWM控制</h3>
+        <p>
+            项目使用 STM32 的定时器输出 PWM，并通过 TB6612 驱动芯片控制左右电机：
+        </p>
+        <ul>
+            <li>左右电机分别由独立的 PWM 输出口驱动</li>
+            <li>通过方向控制信号实现正反转</li>
+            <li>通过占空比控制实现速度调节</li>
+        </ul>
+        <p>
+            这部分代码体现了典型的嵌入式电机控制思路：硬件引脚配置、PWM 初始化、方向控制逻辑以及占空比映射都已经完整实现。
+        </p>
+
+        <h3>3. 编码器测速与反馈</h3>
+        <p>
+            为了获得轮子的实际运动状态，项目加入了编码器模块：
+        </p>
+        <ul>
+            <li>通过外部中断捕获编码器信号</li>
+            <li>统计左右轮转角变化</li>
+            <li>计算转速信息</li>
+        </ul>
+        <p>
+            这一层是平衡车控制中非常关键的反馈路径。即使当前工程还偏向底层验证阶段，编码器模块已经具备了后续闭环控制的基础条件。
+        </p>
+
+        <h3>4. 按键控制与状态切换</h3>
+        <p>
+            项目中还封装了按键模块，用户可以通过按键触发电机使能状态切换：
+        </p>
+        <ul>
+            <li>单击按键可以切换电机使能状态</li>
+            <li>按键逻辑通过独立模块封装，便于后续扩展为启动、停止、模式切换等功能</li>
+        </ul>
+
+        <h3>5. 电池电压与状态指示</h3>
+        <p>
+            工程中还包含电池检测与状态显示模块：
+        </p>
+        <ul>
+            <li>通过 ADC 采样电压信号</li>
+            <li>根据电压等级切换 LED 状态指示</li>
+            <li>为后续低电压保护或电量提示提供基础设施</li>
+        </ul>
+
+        <!-- ===== 技术实现特点 ===== -->
+        <h2>技术实现特点</h2>
+
+        <h3>硬件接口设计</h3>
+        <p>
+            项目整体采用了较清晰的嵌入式模块划分：
+        </p>
+        <ul>
+            <li><strong>MPU6050 模块</strong>：负责传感器初始化与数据读取</li>
+            <li><strong>PWM 模块</strong>：负责电机驱动输出</li>
+            <li><strong>编码器模块</strong>：负责反馈量采集</li>
+            <li><strong>按键模块</strong>：负责简单的人机交互</li>
+            <li><strong>电池模块</strong>：负责电源状态检测</li>
+        </ul>
+        <p>
+            这种分层方式使得每个功能都能单独调试，后续再接入控制算法时也更容易维护。
+        </p>
+
+        <h3>中断驱动与实时处理</h3>
+        <p>
+            编码器模块使用外部中断来捕捉脉冲变化，这种方式能够快速响应轮子状态变化；同时，项目中也使用了定时器和中断相关机制，说明其已经具备了较真实的嵌入式控制系统特征。
+        </p>
+
+        <h3>代码组织风格</h3>
+        <p>
+            从代码结构上看，项目有明显的<strong>驱动层 + 应用层</strong>风格：
+        </p>
+        <ul>
+            <li>低层驱动文件负责底层硬件配置</li>
+            <li>应用层文件负责功能组织与状态流转</li>
+            <li>测试文件用于分模块验证各个功能点</li>
+        </ul>
+        <p>
+            这说明它不仅是一个简单的 demo，而是一个具备工程化意识的单片机项目。
+        </p>
+
+        <!-- ===== 代码结构说明 ===== -->
+        <h2>代码结构说明</h2>
+        <p>
+            项目目录中主要包含以下几类内容：
+        </p>
+        <ul>
+            <li><strong>user</strong>：核心应用代码，包含主程序和各个功能模块</li>
+            <li><strong>test</strong>：各模块的测试代码，用于验证传感器、PWM、电机和编码器效果</li>
+            <li><strong>std_periph_driver</strong>：STM32标准外设库驱动文件</li>
+            <li><strong>startup</strong>：启动代码与工程初始化文件</li>
+        </ul>
+
+        <!-- ===== 演示视频 ===== -->
+        <h2>演示视频</h2>
+        <div class="video-wrapper">
+            <video controls>
+                <source src="/videos/balance_car.mp4" type="video/mp4">
+                你的浏览器不支持 video 标签，请 <a href="/videos/balance_car.mp4">下载演示</a>。
+            </video>
+        </div>
+        <p class="video-caption">📽️ STM32两轮平衡车运行演示</p>
+
+        <!-- ===== 开发环境 ===== -->
+        <h2>开发环境</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>主控芯片</td><td>STM32F103C8T6</td></tr>
+                <tr><td>传感器</td><td>MPU6050（六轴惯性传感器）</td></tr>
+                <tr><td>驱动芯片</td><td>TB6612</td></tr>
+                <tr><td>反馈方式</td><td>编码器脉冲计数</td></tr>
+                <tr><td>通信方式</td><td>I2C、USART</td></tr>
+                <tr><td>开发工具</td><td>Keil MDK</td></tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</body>
+</html>

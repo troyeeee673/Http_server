@@ -54,3 +54,317 @@
 [2026-08-14 10:06:40] [INFO] 新客户端连接 fd=6
 [2026-08-14 10:06:41] [INFO] 新客户端连接 fd=7
 [2026-08-14 10:06:52] [INFO] Server stopped
+[2026-08-14 14:44:01] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 14:44:01] [INFO] Server started on port 8080
+[2026-08-14 14:44:03] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:03] [INFO] Request file: www/index.html
+[2026-08-14 14:44:03] [INFO] Send file: www/index.html, bytes: 1142
+[2026-08-14 14:44:03] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:03] [INFO] Request file: www/style.css
+[2026-08-14 14:44:03] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 14:44:04] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:49] [INFO] Server stopped
+[2026-08-14 14:44:50] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 14:44:50] [INFO] Server started on port 8080
+[2026-08-14 14:44:52] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:52] [INFO] Request file: www/index.html
+[2026-08-14 14:44:52] [INFO] Send file: www/index.html, bytes: 1159
+[2026-08-14 14:44:52] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:52] [INFO] Request file: www/style.css
+[2026-08-14 14:44:52] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 14:44:52] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:44:54] [INFO] Request file: www/作品展示.html
+[2026-08-14 14:44:54] [INFO] Send file: www/作品展示.html, bytes: 16253
+[2026-08-14 14:44:55] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:48:37] [INFO] Server stopped
+[2026-08-14 14:48:38] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 14:48:38] [INFO] Server started on port 8080
+[2026-08-14 14:48:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:48:40] [INFO] Request file: www/index.html
+[2026-08-14 14:48:40] [INFO] Send file: www/index.html, bytes: 1159
+[2026-08-14 14:48:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:48:40] [INFO] Request file: www/style.css
+[2026-08-14 14:48:40] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 14:48:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:48:43] [INFO] Request file: www/作品展示.html
+[2026-08-14 14:48:43] [INFO] Send file: www/作品展示.html, bytes: 14250
+[2026-08-14 14:48:43] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:49:06] [INFO] Request file: www/projects/radio-detail.html
+[2026-08-14 14:49:06] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:49:20] [INFO] 新客户端连接 fd=7
+[2026-08-14 14:49:20] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 14:49:20] [INFO] 新客户端连接 fd=7
+[2026-08-14 14:49:20] [INFO] 新客户端连接 fd=8
+[2026-08-14 14:54:46] [INFO] Server stopped
+[2026-08-14 14:54:47] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 14:54:47] [INFO] Server started on port 8080
+[2026-08-14 14:54:51] [INFO] Server stopped
+[2026-08-14 14:55:04] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 14:55:04] [INFO] Server started on port 8080
+[2026-08-14 14:55:06] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:06] [INFO] Request file: www/index.html
+[2026-08-14 14:55:06] [INFO] Send file: www/index.html, bytes: 1159
+[2026-08-14 14:55:06] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:06] [INFO] Request file: www/style.css
+[2026-08-14 14:55:06] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 14:55:06] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:07] [INFO] Request file: www/作品展示.html
+[2026-08-14 14:55:07] [INFO] Send file: www/作品展示.html, bytes: 11396
+[2026-08-14 14:55:08] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:20] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 14:55:20] [INFO] Send file: www/projects/流媒体广播.html, bytes: 12422
+[2026-08-14 14:55:21] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:21] [INFO] Request file: www/images/my-radio-poster.jpg
+[2026-08-14 14:55:21] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:55:21] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 14:55:54] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:56:00] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 14:56:00] [INFO] 新客户端连接 fd=6
+[2026-08-14 14:56:00] [INFO] 新客户端连接 fd=7
+[2026-08-14 14:57:27] [INFO] 新客户端连接 fd=8
+[2026-08-14 14:57:27] [INFO] 新客户端连接 fd=9
+[2026-08-14 14:57:27] [INFO] Request file: www/作品展示.html
+[2026-08-14 14:57:27] [INFO] Send file: www/作品展示.html, bytes: 11377
+[2026-08-14 14:57:28] [INFO] 新客户端连接 fd=9
+[2026-08-14 14:58:24] [INFO] 新客户端连接 fd=10
+[2026-08-14 14:58:24] [INFO] 新客户端连接 fd=11
+[2026-08-14 14:58:24] [INFO] Request file: www/作品展示.html
+[2026-08-14 14:58:24] [INFO] Send file: www/作品展示.html, bytes: 11321
+[2026-08-14 14:58:25] [INFO] 新客户端连接 fd=10
+[2026-08-14 14:58:48] [INFO] 新客户端连接 fd=12
+[2026-08-14 14:58:48] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 14:58:48] [INFO] Send file: www/projects/流媒体广播.html, bytes: 12422
+[2026-08-14 14:58:48] [INFO] 新客户端连接 fd=12
+[2026-08-14 14:58:48] [INFO] Request file: www/images/my-radio-poster.jpg
+[2026-08-14 14:58:48] [INFO] 新客户端连接 fd=12
+[2026-08-14 14:58:48] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 14:58:48] [INFO] 新客户端连接 fd=12
+[2026-08-14 14:58:52] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 14:58:53] [INFO] 新客户端连接 fd=12
+[2026-08-14 14:58:53] [INFO] 新客户端连接 fd=13
+[2026-08-14 15:07:30] [INFO] Server stopped
+[2026-08-14 15:07:45] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 15:07:45] [INFO] Server started on port 8080
+[2026-08-14 15:07:47] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:07:47] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:12:20] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 15:12:20] [INFO] Server started on port 8080
+[2026-08-14 15:12:22] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:12:22] [INFO] Request file: www/index.html
+[2026-08-14 15:12:22] [INFO] Send file: www/index.html, bytes: 1159
+[2026-08-14 15:12:23] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:12:23] [INFO] Request file: www/style.css
+[2026-08-14 15:12:23] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 15:12:25] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:12:25] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:12:25] [INFO] Send file: www/作品展示.html, bytes: 11321
+[2026-08-14 15:12:29] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:12:29] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 15:12:29] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11942
+[2026-08-14 15:13:10] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:13:10] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 15:13:10] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11829
+[2026-08-14 15:14:37] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:14:37] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 15:14:37] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11846
+[2026-08-14 15:15:21] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:15:21] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 15:15:21] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11902
+[2026-08-14 15:15:56] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:15:56] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 15:17:31] [INFO] Server stopped
+[2026-08-14 15:17:39] [INFO] Starting HTTP server on port 8080...
+[2026-08-14 15:17:39] [INFO] Server started on port 8080
+[2026-08-14 15:17:41] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:17:41] [INFO] Request file: www/index.html
+[2026-08-14 15:17:41] [INFO] Send file: www/index.html, bytes: 1159
+[2026-08-14 15:17:41] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:17:41] [INFO] Request file: www/style.css
+[2026-08-14 15:17:41] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 15:17:43] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:17:43] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:17:43] [INFO] Send file: www/作品展示.html, bytes: 11321
+[2026-08-14 15:17:44] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:17:44] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 15:17:45] [INFO] 新客户端连接 fd=8
+[2026-08-14 15:17:45] [INFO] Request file: www/videos/my-radio-demo.mp4
+[2026-08-14 15:17:46] [INFO] Send file: www/videos/my-radio-demo.mp4, bytes: 22973372
+[2026-08-14 15:17:47] [INFO] Send file: www/videos/my-radio-demo.mp4, bytes: 22973372
+[2026-08-14 15:30:56] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:30:56] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:30:56] [INFO] Send file: www/作品展示.html, bytes: 13109
+[2026-08-14 15:31:05] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:31:05] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 15:31:05] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11902
+[2026-08-14 15:33:39] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:33:39] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:33:39] [INFO] Send file: www/作品展示.html, bytes: 13109
+[2026-08-14 15:33:46] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:33:46] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:33:46] [INFO] Send file: www/作品展示.html, bytes: 13109
+[2026-08-14 15:36:39] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:36:39] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:36:39] [INFO] Send file: www/作品展示.html, bytes: 13107
+[2026-08-14 15:36:50] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:36:50] [INFO] Request file: www/projects/驿站快递服务.html
+[2026-08-14 15:38:06] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:38:06] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:38:06] [INFO] Send file: www/作品展示.html, bytes: 13107
+[2026-08-14 15:38:11] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:38:11] [INFO] Request file: www/projects/驿站快递服务.html
+[2026-08-14 15:38:11] [INFO] Send file: www/projects/驿站快递服务.html, bytes: 13219
+[2026-08-14 15:38:37] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:38:37] [INFO] Request file: www/videos/delivery_service_demo.mp4
+[2026-08-14 15:38:37] [INFO] 新客户端连接 fd=8
+[2026-08-14 15:38:37] [INFO] Request file: www/videos/delivery_service_demo.mp4
+[2026-08-14 15:38:39] [INFO] Send file: www/videos/delivery_service_demo.mp4, bytes: 26739942
+[2026-08-14 15:38:39] [INFO] Send file: www/videos/delivery_service_demo.mp4, bytes: 26739942
+[2026-08-14 15:38:40] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:38:40] [INFO] Request file: www/videos/delivery_service_demo.mp4
+[2026-08-14 15:38:41] [INFO] Send file: www/videos/delivery_service_demo.mp4, bytes: 26739942
+[2026-08-14 15:39:08] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:39:08] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:39:08] [INFO] Send file: www/作品展示.html, bytes: 13102
+[2026-08-14 15:39:09] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:39:09] [INFO] Request file: www/projects/驿站快递服务.html
+[2026-08-14 15:39:09] [INFO] Send file: www/projects/驿站快递服务.html, bytes: 13106
+[2026-08-14 15:39:15] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:39:15] [INFO] Request file: www/projects/驿站快递服务.html
+[2026-08-14 15:39:15] [INFO] Send file: www/projects/驿站快递服务.html, bytes: 13106
+[2026-08-14 15:39:39] [INFO] 新客户端连接 fd=6
+[2026-08-14 15:47:43] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:47:43] [INFO] Request file: www/index.html
+[2026-08-14 15:47:43] [INFO] Send file: www/index.html, bytes: 1225
+[2026-08-14 15:47:44] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:47:44] [INFO] Request file: www/style.css
+[2026-08-14 15:47:44] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 15:47:46] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:47:46] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:47:46] [INFO] Send file: www/作品展示.html, bytes: 15022
+[2026-08-14 15:48:07] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:48:07] [INFO] Request file: www/projects/基于STM32F103的多功能手表.html
+[2026-08-14 15:48:07] [INFO] Send file: www/projects/基于STM32F103的多功能手表.html, bytes: 16864
+[2026-08-14 15:48:08] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:48:08] [INFO] Request file: www/images/watch-stm32-poster.jpg
+[2026-08-14 15:48:08] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:48:08] [INFO] Request file: www/videos/stm32f103_watch.mp4
+[2026-08-14 15:48:09] [INFO] Send file: www/videos/stm32f103_watch.mp4, bytes: 22973372
+[2026-08-14 15:48:28] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:48:29] [INFO] Request file: www/videos/stm32f103_watch.mp4
+[2026-08-14 15:48:29] [INFO] 新客户端连接 fd=9
+[2026-08-14 15:48:29] [INFO] Request file: www/videos/stm32f103_watch.mp4
+[2026-08-14 15:48:30] [INFO] Send file: www/videos/stm32f103_watch.mp4, bytes: 22973372
+[2026-08-14 15:48:30] [INFO] Send file: www/videos/stm32f103_watch.mp4, bytes: 22973372
+[2026-08-14 15:54:32] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:54:32] [INFO] Request file: www/作品展示.html
+[2026-08-14 15:54:32] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 15:54:44] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:54:44] [INFO] Request file: www/projects/平衡车.html
+[2026-08-14 15:54:44] [INFO] Send file: www/projects/平衡车.html, bytes: 13493
+[2026-08-14 15:54:44] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:54:44] [INFO] Request file: www/videos/balance_car.mp4
+[2026-08-14 15:55:16] [INFO] 新客户端连接 fd=7
+[2026-08-14 15:55:16] [INFO] Request file: www/videos/balance_car_demo.mp4
+[2026-08-14 15:55:17] [INFO] 新客户端连接 fd=9
+[2026-08-14 15:55:17] [INFO] Request file: www/videos/balance_car_demo.mp4
+[2026-08-14 15:55:18] [INFO] Send file: www/videos/balance_car_demo.mp4, bytes: 22973372
+[2026-08-14 15:55:18] [INFO] Send file: www/videos/balance_car_demo.mp4, bytes: 22973372
+[2026-08-14 16:03:22] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:03:22] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:03:22] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 16:03:25] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:03:30] [INFO] Request file: www/index.html
+[2026-08-14 16:03:30] [INFO] Send file: www/index.html, bytes: 2624
+[2026-08-14 16:03:30] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:03:30] [INFO] Request file: www/style.css
+[2026-08-14 16:03:30] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 16:04:11] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:04:11] [INFO] Request file: www/index.html
+[2026-08-14 16:04:11] [INFO] Send file: www/index.html, bytes: 2534
+[2026-08-14 16:04:11] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:04:11] [INFO] Request file: www/style.css
+[2026-08-14 16:04:11] [INFO] Send file: www/style.css, bytes: 627
+[2026-08-14 16:06:17] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:06:17] [INFO] Request file: www/index.html
+[2026-08-14 16:06:17] [INFO] Send file: www/index.html, bytes: 5970
+[2026-08-14 16:08:03] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:08:03] [INFO] Request file: www/index.html
+[2026-08-14 16:08:03] [INFO] Send file: www/index.html, bytes: 8105
+[2026-08-14 16:09:01] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:09:01] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:09:01] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 16:11:40] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:11:40] [INFO] Request file: www/index.html
+[2026-08-14 16:11:40] [INFO] Send file: www/index.html, bytes: 7380
+[2026-08-14 16:11:54] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:11:54] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:11:54] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 16:12:00] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:12:00] [INFO] Request file: www/个人简历.html
+[2026-08-14 16:12:00] [INFO] Send file: www/个人简历.html, bytes: 0
+[2026-08-14 16:14:11] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:14:12] [INFO] Request file: www/index.html
+[2026-08-14 16:14:12] [INFO] Send file: www/index.html, bytes: 7561
+[2026-08-14 16:14:35] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:14:35] [INFO] Request file: www/index.html
+[2026-08-14 16:14:35] [INFO] Send file: www/index.html, bytes: 7556
+[2026-08-14 16:16:18] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:16:18] [INFO] Request file: www/index.html
+[2026-08-14 16:16:18] [INFO] Send file: www/index.html, bytes: 7744
+[2026-08-14 16:16:29] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:16:29] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:16:29] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 16:39:48] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:39:48] [INFO] Request file: www/index.html
+[2026-08-14 16:39:48] [INFO] Send file: www/index.html, bytes: 7748
+[2026-08-14 16:41:05] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:41:05] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:41:05] [INFO] Send file: www/作品展示.html, bytes: 16839
+[2026-08-14 16:41:05] [INFO] 新客户端连接 fd=7
+[2026-08-14 16:41:05] [INFO] 新客户端连接 fd=8
+[2026-08-14 16:46:44] [INFO] 新客户端连接 fd=9
+[2026-08-14 16:46:44] [INFO] 新客户端连接 fd=10
+[2026-08-14 16:46:44] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:46:44] [INFO] Send file: www/作品展示.html, bytes: 18598
+[2026-08-14 16:46:44] [INFO] 新客户端连接 fd=10
+[2026-08-14 16:46:47] [INFO] Request file: www/index.html
+[2026-08-14 16:46:47] [INFO] Send file: www/index.html, bytes: 7748
+[2026-08-14 16:46:54] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:46:54] [INFO] Send file: www/作品展示.html, bytes: 18598
+[2026-08-14 16:46:54] [INFO] 新客户端连接 fd=9
+[2026-08-14 16:47:09] [INFO] Request file: www/projects/基于Epoll的并发Http服务器.html
+[2026-08-14 16:47:09] [INFO] Send file: www/projects/基于Epoll的并发Http服务器.html, bytes: 13115
+[2026-08-14 16:47:09] [INFO] 新客户端连接 fd=9
+[2026-08-14 16:48:48] [INFO] 新客户端连接 fd=10
+[2026-08-14 16:49:36] [INFO] 新客户端连接 fd=11
+[2026-08-14 16:49:36] [INFO] 新客户端连接 fd=12
+[2026-08-14 16:49:36] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:49:36] [INFO] Send file: www/作品展示.html, bytes: 18598
+[2026-08-14 16:49:36] [INFO] 新客户端连接 fd=12
+[2026-08-14 16:49:38] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 16:49:38] [INFO] Send file: www/projects/流媒体广播.html, bytes: 11902
+[2026-08-14 16:51:57] [INFO] 新客户端连接 fd=11
+[2026-08-14 16:51:57] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:51:57] [INFO] Send file: www/作品展示.html, bytes: 18598
+[2026-08-14 16:51:57] [INFO] 新客户端连接 fd=11
+[2026-08-14 16:51:57] [INFO] 新客户端连接 fd=13
+[2026-08-14 16:51:58] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 16:51:58] [INFO] Send file: www/projects/流媒体广播.html, bytes: 12415
+[2026-08-14 16:52:08] [INFO] 新客户端连接 fd=11
+[2026-08-14 16:52:09] [INFO] Request file: www/projects/流媒体广播.html
+[2026-08-14 16:52:09] [INFO] Send file: www/projects/流媒体广播.html, bytes: 12415
+[2026-08-14 16:52:09] [INFO] 新客户端连接 fd=11
+[2026-08-14 16:54:00] [INFO] 新客户端连接 fd=14
+[2026-08-14 16:54:14] [INFO] Request file: www/作品展示.html
+[2026-08-14 16:54:14] [INFO] Send file: www/作品展示.html, bytes: 18598
+[2026-08-14 16:54:15] [INFO] 新客户端连接 fd=14
+[2026-08-14 16:58:44] [INFO] 新客户端连接 fd=15
+[2026-08-14 17:03:42] [INFO] 新客户端连接 fd=16
+[2026-08-14 17:03:42] [INFO] Request file: www/index.html
+[2026-08-14 17:03:42] [INFO] Send file: www/index.html, bytes: 7766
+[2026-08-14 17:03:43] [INFO] 新客户端连接 fd=16
+[2026-08-14 17:03:43] [INFO] 新客户端连接 fd=17
+[2026-08-14 17:03:43] [INFO] Request file: www/杨慧婷简历_嵌入式软件.pdf
+[2026-08-14 17:03:43] [INFO] Send file: www/杨慧婷简历_嵌入式软件.pdf, bytes: 393861
+[2026-08-14 17:03:44] [INFO] 新客户端连接 fd=16
+[2026-08-14 17:04:19] [INFO] Server stopped

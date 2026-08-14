@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于C语言实现的驿站快递服务平台</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: #f6f8fa;
+            color: #1f2328;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ===== 标题 ===== */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            border-bottom: 3px solid #e1e4e8;
+            padding-bottom: 16px;
+        }
+
+        .subtitle {
+            color: #57606a;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        /* ===== 链接 ===== */
+        a {
+            color: #0969da;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #1f2328;
+            color: #fff !important;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .github-link:hover {
+            background: #2d333b;
+            text-decoration: none;
+        }
+
+        /* ===== 二级标题 ===== */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 8px;
+        }
+
+        /* ===== 三级标题 ===== */
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== 段落 ===== */
+        p {
+            margin-bottom: 16px;
+        }
+
+        /* ===== 列表 ===== */
+        ul,
+        ol {
+            margin: 12px 0 20px 24px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* ===== 表格 ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 28px;
+            font-size: 0.95rem;
+        }
+        th,
+        td {
+            border: 1px solid #d0d7de;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        /* ===== 代码块 ===== */
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 8px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+            margin: 16px 0 20px;
+            border: 1px solid #e1e4e8;
+        }
+        code {
+            background-color: #f0f2f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* ===== 视频容器 ===== */
+        .video-wrapper {
+            margin: 24px 0 28px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        .video-caption {
+            text-align: center;
+            color: #57606a;
+            font-size: 0.9rem;
+            margin-top: -12px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 标签/徽章 ===== */
+        .tag {
+            display: inline-block;
+            background: #eef2f6;
+            color: #1f2328;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 10px;
+            }
+            .container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 6px 10px;
+            }
+            pre {
+                padding: 12px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== 标题区 ===== -->
+        <h1>📦 基于C语言实现的驿站快递服务平台</h1>
+        <div class="subtitle">
+            <span>🏷️</span>
+            <span class="tag">C语言</span>
+            <span class="tag">数据结构</span>
+            <span class="tag">哈希表</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">双写一致性</span>
+            <span class="tag">事务保护</span>
+            <br>
+            <span style="color:#57606a; font-size:0.9rem;">
+                基于C语言实现的驿站快递管理系统，支持快递入库、出库、查询，采用哈希表（链地址法）实现高效存储，SQLite实现数据持久化，支持双写一致性与事务保护。
+            </span>
+            <br>
+        </div>
+
+        <!-- ===== 项目简介 ===== -->
+        <h2>项目简介</h2>
+        <p>
+            本项目是一个基于<strong>C语言</strong>实现的驿站快递管理系统，采用分层架构设计，通过<strong>哈希表（链地址法）</strong>实现快递信息的高效存储与检索，结合<strong>SQLite</strong>实现数据持久化。系统支持快递入库、出库、查询等完整业务流程，并实现了内存与数据库的双写一致性保障。
+        </p>
+
+        <!-- ===== 功能 ===== -->
+        <h2>功能</h2>
+        <p><strong>服务端</strong>：</p>
+        <ul>
+            <li>快递入库（自动生成取件码、按类型分配货架）</li>
+            <li>快递出库（支持按取件码或手机号批量取件）</li>
+            <li>快递查询（支持手机号查询、取件码查询）</li>
+            <li>自动过期判定（入库超过14天自动标记为滞留件）</li>
+            <li>数据持久化（SQLite数据库存储）</li>
+            <li>双写一致性（内存哈希表与数据库同步更新）</li>
+        </ul>
+        <p><strong>客户端</strong>：</p>
+        <ul>
+            <li>终端菜单式交互界面（VT100彩色输出）</li>
+            <li>快递信息录入与展示</li>
+            <li>批量取件操作</li>
+            <li>状态可视化（待取件/已取件/滞留件）</li>
+        </ul>
+
+        <!-- ===== 技术栈 ===== -->
+        <h2>技术栈</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>技术领域</th>
+                    <th>核心技术</th>
+                    <th>应用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>数据结构</td><td>哈希表（链地址法）</td><td>快递信息高效存储与O(1)查询</td></tr>
+                <tr><td>动态扩容</td><td>负载因子触发重哈希</td><td>保证哈希表查询性能稳定</td></tr>
+                <tr><td>持久化</td><td>SQLite3</td><td>数据持久化存储</td></tr>
+                <tr><td>一致性</td><td>双写+回滚机制</td><td>内存与数据库数据一致性</td></tr>
+                <tr><td>事务</td><td>SQLite事务</td><td>出库操作原子性保障</td></tr>
+                <tr><td>终端UI</td><td>VT100控制码</td><td>彩色终端界面</td></tr>
+                <tr><td>构建工具</td><td>Makefile</td><td>项目编译与管理</td></tr>
+            </tbody>
+        </table>
+
+
+        <!-- ===== 核心技术亮点 ===== -->
+        <h2>核心技术亮点</h2>
+
+        <h3>1. 哈希表动态扩容机制</h3>
+        <p>
+            系统使用自定义哈希表实现快递信息存储，采用<strong>链地址法</strong>解决哈希冲突，并实现了<strong>负载因子触发的动态扩容</strong>机制：
+        </p>
+        <pre><code>// 负载因子触发扩容
+if ((float)ht->size / ht->count >= LOAD_FACTOR) {
+    int new_count = ht->count * 2;
+    DeliverNode** new_buckets = (DeliverNode**)calloc(new_count, sizeof(DeliverNode*));
+    // 遍历旧桶，重新散列插入新桶
+    for (int i = 0; i < ht->count; i++) {
+        DeliverNode* curr = ht->buckets[i];
+        while (curr) {
+            DeliverNode* next = curr->next;
+            int new_key = hash_function(curr->data.pickUp_code, new_count);
+            curr->next = new_buckets[new_key];
+            new_buckets[new_key] = curr;
+            curr = next;
+        }
+    }
+    free(ht->buckets);
+    ht->buckets = new_buckets;
+    ht->count = new_count;
+}</code></pre>
+        <p><strong>关键设计</strong>：</p>
+        <ul>
+            <li><strong>哈希函数</strong>：采用多项式滚动哈希（seed=31），对取件码进行哈希计算</li>
+            <li><strong>负载因子</strong>：超过阈值时自动扩容，保证查询性能</li>
+            <li><strong>重哈希策略</strong>：桶数量翻倍，使用头插法重新分配节点</li>
+        </ul>
+
+        <h3>2. 双写一致性与失败回滚</h3>
+        <p>
+            系统实现了内存哈希表与SQLite数据库的<strong>双写一致性</strong>，任何一步失败都会触发回滚：
+        </p>
+        <pre><code>int in_station(ExpressStation *es, Deliver *deliver) {
+    // 1. 先插入内存哈希表
+    if (insert_to_table(es->in_repository, deliver)) {
+        return 1;
+    }
+    // 2. 再同步到数据库，失败则回滚内存
+    if (db_insert_in_repository(deliver) != 0) {
+        delete_from_table(es->in_repository, deliver->pickUp_code, NULL);
+        return 1;
+    }
+    return 0;
+}</code></pre>
+
+        <h3>3. SQLite事务保护</h3>
+        <p>
+            出库操作涉及两个原子操作（从入库表删除、插入出库表），使用SQLite事务保证原子性：
+        </p>
+        <pre><code>// 开启事务
+sqlite3_exec(g_db, "BEGIN TRANSACTION;", NULL, NULL, &err_msg);
+
+// 1. 从入库表删除
+sqlite3_prepare_v2(g_db, "DELETE FROM in_repository WHERE pickUp_code = ?;", ...);
+
+// 2. 插入出库表
+sqlite3_prepare_v2(g_db, "INSERT INTO out_repository ...", ...);
+
+// 提交事务
+sqlite3_exec(g_db, "COMMIT;", NULL, NULL, &err_msg);</code></pre>
+        <p><strong>关键设计</strong>：任意一步失败都执行 <code>ROLLBACK</code>，保证数据一致性。</p>
+
+        <h3>4. 分层头文件架构</h3>
+        <p>
+            通过分层设计解决结构体交叉引用问题：
+        </p>
+        <pre><code>common.h        ←  定义 Deliver、DeliverNode、枚举等基础类型
+    ↑
+hash_table.h    ←  包含 common.h，定义 HashTable
+    ↑
+express_service.h  ←  包含 common.h + hash_table.h，定义 ExpressStation
+    ↑
+ui.h / main.c   ←  只包含 express_service.h</code></pre>
+
+        <!-- ===== 安装与运行 ===== -->
+        <h2>安装与运行</h2>
+
+        <h3>编译</h3>
+        <pre><code>git clone https://github.com/troyeeee673/Delivery_service.git
+cd Delivery_service
+make</code></pre>
+
+        <h3>运行</h3>
+        <pre><code>./express_station</code></pre>
+
+        <h3>菜单操作</h3>
+        <pre><code>╔══════════════════════════════╗
+║     📦 驿 站 管 理 系 统     ║
+╚══════════════════════════════╝
+
+▸ 快递操作
+  [1]  入库 (登记新快递)
+  [2]  批量取件 (按电话)
+  [3]  取件 (按取件码)
+
+▸ 信息查询
+  [4]  查询 (按电话)
+  [5]  查询 (按取件码)
+  [8]  显示全部快递
+
+▸ 系统管理
+  [6]  清空驿站
+  [7]  删除驿站
+
+▸ 系统
+  [9]  退出应用</code></pre>
+
+        <!-- ===== 开发环境 ===== -->
+        <h2>开发环境</h2>
+        <ul>
+            <li>Linux（Ubuntu/CentOS）</li>
+            <li>GCC 9+</li>
+            <li>SQLite3 库</li>
+            <li>Make</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

@@ -70,11 +70,26 @@ static void serve_file(int client_fd, const char *file_path) {
         return;
     }
 
-    if (file_stat.st_size > 10 * 1024 * 1024) {
+    if (file_stat.st_size > 100 * 1024 * 1024) {
         close(file_fd);
+        
+        // 检查 client_fd 是否有效
+        if (client_fd <= 0) {
+            fprintf(stderr, "[ERROR] Invalid client_fd: %d\n", client_fd);
+            return;
+        }
+        
         char response[RESPONSE_SIZE] = {0};
         build_error_response(413, "File Too Large", response);
-        send(client_fd, response, strlen(response), 0);
+        
+        // 发送响应，检查返回值
+        ssize_t sent = send(client_fd, response, strlen(response), 0);
+        if (sent < 0) {
+            perror("send failed");
+        }
+        
+        // 发送完关闭连接
+        close(client_fd);
         return;
     }
 

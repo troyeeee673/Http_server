@@ -3,31 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <title>Tiny HTTP Server</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: #f6f8fa;
+            color: #1f2328;
+            line-height: 1.7;
+            padding: 30px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+            color: #1f2328;
+        }
+
+        .subtitle {
+            color: #57606a;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e1e4e8;
+            margin: 16px 0 18px;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #1f2328;
+        }
+
+        /* ===== 紧凑技术栈表格 ===== */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .tech-table th,
+        .tech-table td {
+            border: 1px solid #d0d7de;
+            padding: 6px 12px;
+            text-align: left;
+        }
+        .tech-table th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .tech-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .tech-table code {
+            background-color: #f0f2f4;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-family: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+        }
+
+        /* ===== 醒目入口（紧凑圆框样式） ===== */
+        .entry-row {
+            display: flex;
+            gap: 16px;
+            padding: 4px 0 6px;
+            flex-wrap: wrap;
+        }
+
+        .entry-link {
+            display: inline-block;
+            background: #eef2f6;
+            border-radius: 30px;
+            padding: 8px 24px;
+            text-decoration: none;
+            color: #1f2328;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .entry-link:hover {
+            background: #dce3ed;
+            border-color: #0969da;
+            color: #0969da;
+        }
+
+        .entry-link .badge {
+            display: inline-block;
+            background: #0969da;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 20px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ===== 功能列表（其他链接） ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px 20px;
+            padding: 4px 0 8px;
+        }
+        .feature-grid a {
+            color: #0969da;
+            text-decoration: none;
+            font-size: 0.92rem;
+            padding: 3px 0;
+            display: inline-block;
+        }
+        .feature-grid a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== 支持特性（紧凑两列） ===== */
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 30px;
+            padding: 2px 0;
+        }
+        .support-grid span {
+            font-size: 0.92rem;
+            padding: 2px 0;
+        }
+        .support-grid .check {
+            color: #1a7f37;
+            font-weight: 600;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 12px;
+            }
+            .container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .entry-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .entry-link {
+                text-align: center;
+                padding: 10px 20px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2px 16px;
+            }
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+            .tech-table {
+                font-size: 0.78rem;
+            }
+            .tech-table th,
+            .tech-table td {
+                padding: 4px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>🚀 Tiny HTTP Server</h1>
-        <p>轻量级 C 语言 HTTP 服务器</p>
+
+        <!-- ===== 标题 ===== -->
+        <h1>TinypollHttp</h1>
+        <p class="subtitle">
+            这是一个 Linux 下的 HTTP 静态文件服务器，偏向于底层网络编程与服务器架构实验，重点关注 socket 监听、请求解析、静态资源响应、并发连接处理以及文件发送优化等方面的实现细节。
+        </p>
+
         <hr>
-        <h2>功能测试</h2>
-        <ul>
-            <li><a href="about.html">页面跳转测试</a></li>
-            <li><a href="test.txt">文本文件测试</a></li>
-            <li><a href="api/test.json">JSON 接口测试</a></li>
-            <li><a href="images/">目录浏览测试</a></li>
-            <li><a href="notexist.html">404 页面测试</a></li>
-        </ul>
+
+        <!-- ===== 醒目入口：作品展示 + 个人简历（紧凑圆框） ===== -->
+        <h2>快速入口</h2>
+        <div class="entry-row">
+            <a href="作品展示.html" class="entry-link">
+                作品展示
+                <span class="badge">-></span>
+            </a>
+            <a href="杨慧婷简历_嵌入式软件.pdf" class="entry-link">
+                个人简历
+                <span class="badge">-></span>
+            </a>
+            <a href="https://github.com/troyeeee673" class="entry-link" target="_blank">
+                GitHub
+                <span class = "badge">-></span>
+
+            </a>
+                <a href="https://troyeeee673.github.io/" class="entry-link" target="_blank">
+                个人博客
+                <span class = "badge">-></span>
+
+            </a>
+        </div>
+
         <hr>
-        <h2>支持特性</h2>
-        <table>
-            <tr><td>✅</td><td>GET 请求</td></tr>
-            <tr><td>✅</td><td>POST 请求</td></tr>
-            <tr><td>✅</td><td>多线程并发</td></tr>
-            <tr><td>✅</td><td>目录浏览</td></tr>
-            <tr><td>✅</td><td>MIME 类型识别</td></tr>
-            <tr><td>✅</td><td>日志记录</td></tr>
+
+        <!-- ===== 技术栈（紧凑版） ===== -->
+        <h2>技术栈</h2>
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>技术领域</th>
+                    <th>核心技术</th>
+                    <th>应用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>网络通信</td><td>Linux Socket</td><td>TCP 连接监听与数据收发</td></tr>
+                <tr><td>并发模型</td><td>epoll</td><td>高并发事件驱动处理</td></tr>
+                <tr><td>并发模型</td><td>pthread</td><td>多线程请求并发</td></tr>
+                <tr><td>文件传输</td><td>sendfile</td><td>高效静态文件发送</td></tr>
+                <tr><td>文件访问</td><td><code>stat</code> / <code>opendir</code> / <code>readdir</code></td><td>文件与目录检测</td></tr>
+                <tr><td>协议处理</td><td>HTTP 请求解析</td><td>处理静态资源访问请求</td></tr>
+                <tr><td>资源类型</td><td>MIME 类型识别</td><td>动态设置 <code>Content-Type</code></td></tr>
+            </tbody>
         </table>
+
     </div>
+
 </body>
 </html>
